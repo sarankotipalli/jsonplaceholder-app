@@ -1,0 +1,8 @@
+<div class="modal">
+    <h3>Comments</h3>
+    <div *ngFor="let comment of comments">
+      <p><strong>{{ comment.name }}</strong>: {{ comment.body }}</p>
+      <p>By: {{ comment.email }}</p>
+    </div>
+  </div>
+  
