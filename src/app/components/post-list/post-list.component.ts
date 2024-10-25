@@ -2,11 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../core/api.service';
 import { AuthService } from '../../core/auth.service';
 import { Post } from '../../core/models';  // Import Post interface
+import { CommonModule } from '@angular/common';
+import { PostDetailsComponent } from '../post-details/post-details.component';
+import { UserDetailsComponent } from '../user-details/user-details.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
-  styleUrls: ['./post-list.component.css']
+  styleUrls: ['./post-list.component.css'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class PostListComponent implements OnInit {
   posts: Post[] = [];
@@ -15,7 +21,7 @@ export class PostListComponent implements OnInit {
   limit = 10;
   page = 1;
 
-  constructor(private apiService: ApiService, private authService: AuthService) {}
+  constructor(private apiService: ApiService, private authService: AuthService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.userId = this.authService.getUserId();
@@ -60,11 +66,17 @@ export class PostListComponent implements OnInit {
     });
   }
 
+
   showComments(postId: number) {
-    // Logic to open PostDetailsComponent modal to show comments
+    // Open PostDetailsComponent modal to show comments for this post
+    this.dialog.open(PostDetailsComponent, {
+      data: { postId }
+    });
   }
 
   showUserDetails(userId: number) {
-    // Logic to open UserDetailsComponent modal to show user details
+    this.dialog.open(UserDetailsComponent, {
+      data: { userId }
+    });
   }
 }

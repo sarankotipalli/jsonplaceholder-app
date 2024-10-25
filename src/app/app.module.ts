@@ -1,29 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
-import { PostListComponent } from './components/post-list/post-list.component';
-import { PostDetailsComponent } from './components/post-details/post-details.component';
-import { UserDetailsComponent } from './components/user-details/user-details.component';
-
-import { ApiService } from './core/api.service';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { AuthService } from './core/auth.service';
+import { ApiService } from './core/api.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { PostListComponent } from './components/post-list/post-list.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { PostDetailsComponent } from './components/post-details/post-details.component';
+import { PosttestComponent } from './components/posttest/posttest.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    PosttestComponent,
     PostListComponent,
     PostDetailsComponent,
     UserDetailsComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule,
+    PosttestComponent,
+    PostListComponent,
+    PostDetailsComponent,
+    UserDetailsComponent
   ],
-  providers: [ApiService, AuthService],
+  providers: [ApiService, AuthService, provideHttpClient(withFetch())],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

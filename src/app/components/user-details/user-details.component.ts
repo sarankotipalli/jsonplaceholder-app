@@ -1,15 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../../core/api.service';
 import { User } from '../../core/models';  // Import User interface
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.css']
+  styleUrls: ['./user-details.component.css'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class UserDetailsComponent implements OnInit {
-  @Input() userId!: number;  // Add "!" to avoid the error related to non-initialized property
-  userDetails: User | undefined;  // Define as undefined initially
+  @Input() userId!: number;
+  userDetails: User | undefined;
 
   constructor(private apiService: ApiService) {}
 

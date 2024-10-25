@@ -1,8 +1,8 @@
 <div *ngIf="userDetails" class="modal">
-    <h3>User Details</h3>
-    <p>Name: {{ userDetails.name }}</p>
-    <p>Email: {{ userDetails.email }}</p>
-    <p>Phone: {{ userDetails.phone }}</p>
-    <p>Address: {{ userDetails.address.street }}, {{ userDetails.address.city }}</p>
-  </div>
+  <h3>User Details</h3>
+  <p>Name: {{ userDetails?.name }}</p>
+  <p>Email: {{ userDetails?.email }}</p>
+  <p>Phone: {{ userDetails?.phone }}</p>
+  <p>Address: {{ userDetails?.address?.street }}, {{ userDetails?.address?.city }}</p>
+</div>
   
